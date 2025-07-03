@@ -72,6 +72,13 @@ export const deleteProduct = async (req, res) => {
   const { id } = req.params; // Extracting the product ID from the request parameters
   console.log("id:", id)
 
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({
+      success: false,
+      message: "Invalid product ID"
+    });
+  }
+
   try {
     await Product.findByIdAndDelete(id);
     return res.status(200).json({
@@ -80,9 +87,9 @@ export const deleteProduct = async (req, res) => {
     });
   } catch (error) {
     console.error("Error deleting product:", error);
-    res.status(404).json({
+    res.status(500).json({
       success: false,
-      message: "Product not found"
+      message: "Internal server error"
     });
   }
 }
