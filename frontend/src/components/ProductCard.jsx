@@ -1,4 +1,5 @@
-import { Box, Heading, Image, Text } from "@chakra-ui/react";
+import { DeleteIcon } from "@chakra-ui/icons";
+import { Box, Heading, HStack, IconButton, Image, Text } from "@chakra-ui/react";
 
 const ProductCard = ({ product }) => {
     return (
@@ -15,9 +16,14 @@ const ProductCard = ({ product }) => {
                     {product.name}
                 </Heading>
 
-                <Text fontWeight={"bold"} fontSize={"lg"} color={textColor} mb={4}>
+                <Text fontWeight={"bold"} fontSize={"xl"} color={textColor} mb={4}>
                     ${product.price}
                 </Text>
+
+                <HStack spacing={2}>
+                    <IconButton icon={<EditIcon />} onClick={onOpen} colorScheme="blue" />
+                    <IconButton icon={<DeleteIcon />} onClick={() => handleDelete(product.id)} colorScheme="red" />
+                </HStack>
             </Box>
         </Box>
     )
