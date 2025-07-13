@@ -26,7 +26,9 @@ const HomePage = () => {
                     columns={{ base: 1, md: 2, lg: 3 }}
                     spacing={10}
                     w={"full"}>
-
+                    {products.map((product) => (
+                        <ProductCard></ProductCard>
+                    ))}
                 </SimpleGrid>
 
                 <Text
