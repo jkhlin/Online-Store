@@ -4,17 +4,7 @@ import { Box, Heading, HStack, IconButton, Image, Text, useColorModeValue } from
 const ProductCard = ({ product }) => {
     const textColor = useColorModeValue("gray.600", "gray.200")
     const background = useColorModeValue("white", "gray.800");
-    
-    const handleDelete = (id) => {
-        console.log("Delete product with id:", id);
-        // TODO: Implement delete functionality
-    };
-    
-    const onOpen = () => {
-        console.log("Edit product:", product.name);
-        // TODO: Implement edit functionality
-    };
-    
+        
     return (
         <Box 
             shadow={"lg"}
@@ -35,8 +25,8 @@ const ProductCard = ({ product }) => {
                 </Text>
 
                 <HStack spacing={2}>
-                    <IconButton icon={<EditIcon />} onClick={onOpen} colorScheme="blue" />
-                    <IconButton icon={<DeleteIcon />} onClick={() => handleDelete(product.id)} colorScheme="red" />
+                    <IconButton icon={<EditIcon />}  colorScheme="blue" />
+                    <IconButton icon={<DeleteIcon />} colorScheme="red" />
                 </HStack>
             </Box>
         </Box>
