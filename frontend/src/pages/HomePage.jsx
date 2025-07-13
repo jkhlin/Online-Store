@@ -12,7 +12,7 @@ const HomePage = () => {
     console.log("HomePage products:", products);
 
     return (
-        <Container maxW={"container.xl"} py={12} bg={"green.500"}>
+        <Container maxW={"container.xl"} py={12}>
             <VStack>
                 <Text
                     fontSize={30}
@@ -28,7 +28,7 @@ const HomePage = () => {
                     spacing={10}
                     w={"full"}>
                     {products.map((product) => (
-                        <ProductCard></ProductCard>
+                        <ProductCard key={product.id} product={product} />
                     ))}
                 </SimpleGrid>
 
