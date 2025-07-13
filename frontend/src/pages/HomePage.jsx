@@ -20,7 +20,7 @@ const HomePage = () => {
                     bgGradient={"linear(to-r, cyan.200, blue.500)"}
                     bgClip={"text"}
                 >
-                    Current Products! 
+                    Current Products!
                 </Text>
 
                 <SimpleGrid
