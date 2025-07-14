@@ -1,7 +1,8 @@
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
-import { Box, Heading, HStack, IconButton, Image, Text, useColorModeValue } from "@chakra-ui/react";
+import { Box, Heading, HStack, IconButton, Image, Input, Text, useColorModeValue, VStack } from "@chakra-ui/react";
 import { useProductStore } from "../store/product";
 import { useToast } from "@chakra-ui/react";
+import { Modal, useDisclosure, ModalOverlay, ModalContent, ModalBody, ModalCloseButton, ModalHeader } from "@chakra-ui/react";
 
 const ProductCard = ({ product }) => {
     const textColor = useColorModeValue("gray.600", "gray.200")
@@ -9,6 +10,8 @@ const ProductCard = ({ product }) => {
 
     const { deleteProduct} = useProductStore();
     const toast = useToast();
+
+    const { isOpen, onOpen, onClose } = useDisclosure();
 
     const handleDeleteProduct = async (pid) => {
         const { success, message } = await deleteProduct(pid);
@@ -56,6 +59,32 @@ const ProductCard = ({ product }) => {
                     <IconButton icon={<DeleteIcon />} onClick={() => handleDeleteProduct(product._id)} colorScheme="red" />
                 </HStack>
             </Box>
+
+            <Modal isOpen={isOpen} onClose={onClose}>
+                <ModalOverlay />
+                    <ModalContent>
+                        <ModalHeader>
+                            Update Product
+                        </ModalHeader>
+                        <ModalCloseButton />
+                        <ModalBody>
+                            <VStack spacing={4}>
+                                <Input 
+                                    placeholder="Product Name"
+                                    name="name"
+                                />
+                                <Input 
+                                    placeholder="Product Price"
+                                    name="price"
+                                />
+                                <Input 
+                                    placeholder="Product Image URL"
+                                    name="image"
+                                />
+                            </VStack>
+                        </ModalBody>
+                    </ModalContent>
+            </Modal>
         </Box>
     )
 }
