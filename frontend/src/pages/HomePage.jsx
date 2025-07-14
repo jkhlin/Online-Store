@@ -37,7 +37,7 @@ const HomePage = () => {
                         fontSize={"xl"}
                         textAlign={"center"}
                         fontWeight={"bold"}
-                        color={"gray.100"}>
+                        color={"gray.500"}>
                     No products found! {" "}
 
                     <Link to={"/create"}>
