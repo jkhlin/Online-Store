@@ -72,6 +72,7 @@ export const useProductStore = create((set) => ({
             return {success: false, message: data.message}
         }
 
+        // update ui automatically
         set((state) => ({
             products: state.products.map((product) => (
                 product._id === pid ? data.data : product

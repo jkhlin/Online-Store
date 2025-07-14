@@ -2,20 +2,20 @@ import Product from "../models/model.js"
 import mongoose from "mongoose";
 
 export const getProducts = async (req, res) => {
-    try {
-    const products = await Product.find({}); // {} Fetch all products from the database
-    return res.status(200).json ({
-        success: true,
-        message: "Products fetched successfully",
-        data: products
-    });
-    } catch (error) {
-    console.error("Error fetching products:", error);
-    res.status(500).json({
-        success: false,
-        message: "Server error"
-    });
-    }
+  try {
+  const products = await Product.find({}); // {} Fetch all products from the database
+  return res.status(200).json ({
+      success: true,
+      message: "Products fetched successfully",
+      data: products
+  });
+  } catch (error) {
+  console.error("Error fetching products:", error);
+  res.status(500).json({
+      success: false,
+      message: "Server error"
+  });
+  }
 }
 
 export const createProduct = async (req, res) => {
@@ -56,7 +56,7 @@ export const updateProduct = async (req, res) => {
 
   try {
     const updatedProduct = await Product.findByIdAndUpdate(id, product, { new: true });
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: "Product updated successfully",
       data: updatedProduct
