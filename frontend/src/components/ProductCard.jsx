@@ -3,9 +3,11 @@ import { Box, Button, Heading, HStack, IconButton, Image, Input, Text, useColorM
 import { useProductStore } from "../store/product";
 import { useToast } from "@chakra-ui/react";
 import { Modal, useDisclosure, ModalOverlay, ModalContent, ModalBody, ModalCloseButton, ModalHeader, ModalFooter } from "@chakra-ui/react";
+import { useState } from "react";
 
 const ProductCard = ({ product }) => {
-    const textColor = useColorModeValue("gray.600", "gray.200")
+    const [updatedProduct, setUpdatedProduct] = useState(product);
+    const textColor = useColorModeValue("gray.600", "gray.200");
     const background = useColorModeValue("white", "gray.800");
 
     const { deleteProduct} = useProductStore();
@@ -72,14 +74,20 @@ const ProductCard = ({ product }) => {
                                 <Input 
                                     placeholder="Product Name"
                                     name="name"
+                                    value={updatedProduct.name}
+                                    //onChange={(e) => setUpdatedProduct({...updatedProduct, name: e.target.value})}
                                 />
                                 <Input 
                                     placeholder="Product Price"
                                     name="price"
+                                    value={updatedProduct.price}
+                                    //onChange={(e) => setUpdatedProduct({...updatedProduct, price: e.target.value})}
                                 />
                                 <Input 
                                     placeholder="Product Image URL"
                                     name="image"
+                                    value={updatedProduct.image}
+                                    //onChange={(e) => setUpdatedProduct({...updatedProduct, image: e.target.value})}
                                 />
                             </VStack>
                         </ModalBody>
