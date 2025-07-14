@@ -1,8 +1,8 @@
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
-import { Box, Heading, HStack, IconButton, Image, Input, Text, useColorModeValue, VStack } from "@chakra-ui/react";
+import { Box, Button, Heading, HStack, IconButton, Image, Input, Text, useColorModeValue, VStack } from "@chakra-ui/react";
 import { useProductStore } from "../store/product";
 import { useToast } from "@chakra-ui/react";
-import { Modal, useDisclosure, ModalOverlay, ModalContent, ModalBody, ModalCloseButton, ModalHeader } from "@chakra-ui/react";
+import { Modal, useDisclosure, ModalOverlay, ModalContent, ModalBody, ModalCloseButton, ModalHeader, ModalFooter } from "@chakra-ui/react";
 
 const ProductCard = ({ product }) => {
     const textColor = useColorModeValue("gray.600", "gray.200")
@@ -55,7 +55,7 @@ const ProductCard = ({ product }) => {
                 </Text>
 
                 <HStack spacing={2}>
-                    <IconButton icon={<EditIcon />}  colorScheme="blue" />
+                    <IconButton icon={<EditIcon />} onClick={onOpen}  colorScheme="blue" />
                     <IconButton icon={<DeleteIcon />} onClick={() => handleDeleteProduct(product._id)} colorScheme="red" />
                 </HStack>
             </Box>
@@ -83,6 +83,15 @@ const ProductCard = ({ product }) => {
                                 />
                             </VStack>
                         </ModalBody>
+
+                        <ModalFooter>
+                            <Button colorScheme="blue" mr={3} onClick={onClose}>
+                                Update
+                            </Button>
+                            <Button variant={"ghost"}>
+                                Cancel
+                            </Button>
+                        </ModalFooter>
                     </ModalContent>
             </Modal>
         </Box>
