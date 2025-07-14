@@ -120,7 +120,7 @@ const ProductCard = ({ product }) => {
                             <Button colorScheme="blue" mr={3} onClick={() => handleUpdateProduct(product._id, updatedProduct)}>
                                 Update
                             </Button>
-                            <Button variant={"ghost"}>
+                            <Button variant={"solid"}>
                                 Cancel
                             </Button>
                         </ModalFooter>
