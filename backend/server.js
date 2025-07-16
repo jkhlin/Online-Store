@@ -23,7 +23,7 @@ if (process.env.NODE_ENV.trim() === "production") {
     app.use(express.static(path.join(__dirname, "frontend/dist")));
 
     // handle react routing to catch all non-API routes
-    app.get('/api/*', (req, res) => {
+    app.get(/(.*)/, (req, res) => {
         res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
     });
 }
