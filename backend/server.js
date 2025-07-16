@@ -18,12 +18,12 @@ app.use("/api/products", router); // serves as a prefix alias for the product ro
 
 if (process.env.NODE_ENV.trim() === "production") {
     console.log("Production mode: Serving static files from frontend/dist");
-    
+
     // serve static files from the frontend/dist directory
     app.use(express.static(path.join(__dirname, "frontend/dist")));
 
     // handle react routing to catch all non-API routes
-    app.get(/(.*)/, (req, res) => {
+    app.get('/api/*', (req, res) => {
         res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
     });
 }
