@@ -16,25 +16,17 @@ app.use(express.json()); // middleware to parse JSON bodies
 
 app.use("/api/products", router); // serves as a prefix alias for the product routes
 
-console.log("Node environment:", `'${process.env.NODE_ENV}'`);
-console.log("Is node env in production", process.env.NODE_ENV === "production");
-console.log("Trimmed NODE_ENV:", `'${process.env.NODE_ENV?.trim()}'`);
-console.log("Is trimmed production?", process.env.NODE_ENV?.trim() === "production");
-
-process.env.NODE_ENV = process.env.NODE_ENV?.trim(); // ensure NODE_ENV is trimmed
-console.log(`NODE_ENV after trim: '${process.env.NODE_ENV}'`);
-
-if (process.env.NODE_ENV?.trim() === "production") {
+if (process.env.NODE_ENV.trim() === "production") {
     console.log("Production mode: Serving static files from frontend/dist");
+    
+    // serve static files from the frontend/dist directory
     app.use(express.static(path.join(__dirname, "frontend/dist")));
 
-    // Handle React routing - catch all non-API routes
-    app.get(/^(?!\/api).*$/, (req, res) => {
+    // handle react routing to catch all non-API routes
+    app.get(/(.*)/, (req, res) => {
         res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
     });
 }
-
-console.log("not in production mode, serving API routes only");
 
 app.listen(port, () => {
     connectDB()
